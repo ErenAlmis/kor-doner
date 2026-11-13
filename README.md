@@ -6,7 +6,7 @@ spit, smoke and sparks in the hero section, 3D tilt cards and a tabbed interacti
 > **Portfolio project.** Kor Döner is a fictional restaurant; the address is a placeholder
 > and the food photos are AI-generated. The site is in Turkish.
 
-**▶ Live demo:** _coming soon_
+**▶ Live demo: [erenalmis.github.io/kor-doner](https://erenalmis.github.io/kor-doner/)**
 
 ![Kor Döner website](docs/screenshot.jpg)
 
