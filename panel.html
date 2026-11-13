@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rezervasyonlar · Kor Döner</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#110f0e">
+<link rel="preload" href="fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="panel-page">
+
+<header class="panel-bar">
+  <a class="brand" href="index.html" aria-label="Kor Döner, siteye dön">
+    <svg class="brand-mark" viewBox="0 0 120 108" aria-hidden="true">
+      <defs><clipPath id="pc"><path d="M44 27 Q60 18 76 27 L68.5 74 Q60 77 51.5 74 Z"/></clipPath></defs>
+      <circle cx="60" cy="54" r="47" fill="none" stroke="currentColor" stroke-width="6.5"/>
+      <line x1="60" y1="13" x2="60" y2="80" stroke="var(--skewer)" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M44 27 Q60 18 76 27 L68.5 74 Q60 77 51.5 74 Z" fill="currentColor"/>
+      <g clip-path="url(#pc)" fill="none" stroke="var(--gap)" stroke-width="1.7" stroke-linecap="round">
+        <path d="M40 35 Q60 41 80 35"/><path d="M40 43 Q60 49 80 43"/><path d="M40 51 Q60 57 80 51"/><path d="M40 59 Q60 65 80 59"/><path d="M40 67 Q60 73 80 67"/>
+      </g>
+      <path fill="var(--flame)" d="M60 97 C51 95 47 88 50 81 C51 84 53 85.5 54.5 84.5 C53 80 55.5 76.5 59 74.5 C58.5 78.5 60.5 80.5 62.5 80.5 C61.5 83.5 63 85 64.5 84 C66 82.5 66 80.5 65.5 79 C69.5 82 71 89 67 93.5 C65 95.8 62.5 96.8 60 97 Z"/>
+    </svg>
+    <span class="brand-name">Kor Döner</span>
+  </a>
+  <span class="panel-tag">Restoran paneli</span>
+  <a class="link-cta" href="index.html#rezervasyon">Siteye dön <span aria-hidden="true">↗</span></a>
+</header>
+
+<main class="panel">
+  <div class="section-head">
+    <h1 class="display-2">Rezervasyonlar</h1>
+    <p id="panelSummary"></p>
+  </div>
+
+  <div class="menu-tabs panel-filter" role="tablist" aria-label="Rezervasyon filtresi">
+    <button role="tab" data-filter="upcoming" aria-selected="true">Yaklaşan</button>
+    <button role="tab" data-filter="all" aria-selected="false" tabindex="-1">Tümü</button>
+  </div>
+
+  <div id="panelList" aria-live="polite"></div>
+
+  <p class="panel-demo">Demo panel: rezervasyonlar bu tarayıcıda saklanır. Gerçek kullanımda panel şifreyle korunur ve veriler sunucuda tutulur.</p>
+</main>
+
+<script src="store.js"></script>
+<script src="panel.js"></script>
+</body>
+</html>

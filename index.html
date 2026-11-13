@@ -44,10 +44,11 @@
   <nav class="nav-links" id="navLinks" aria-label="Ana menü">
     <a href="#lezzet">Lezzetler</a>
     <a href="#menu">Menü</a>
+    <a href="#rezervasyon">Rezervasyon</a>
     <a href="#hikaye">Hakkımızda</a>
     <a href="#ziyaret">İletişim</a>
   </nav>
-  <a class="link-cta nav-cta" href="#ziyaret">Bize uğrayın <span aria-hidden="true">↗</span></a>
+  <a class="link-cta nav-cta" href="#rezervasyon">Masa ayırtın <span aria-hidden="true">↗</span></a>
   <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menü</button>
 </header>
 
@@ -144,6 +145,69 @@
   <div class="menu-panel" id="menuPanel" role="tabpanel" tabindex="0"></div>
 </section>
 
+<section class="booking" id="rezervasyon" aria-labelledby="bookTitle">
+  <div class="section-head">
+    <h2 id="bookTitle" class="display-2">Masa ayırtın</h2>
+    <p>Her gün 11:00 – 22:00 açığız. Masanızı ayırtın, geldiğinizde şiş dönüyor olsun.</p>
+  </div>
+
+  <form class="book" id="bookForm" novalidate>
+    <div class="book-steps">
+      <fieldset class="book-field">
+        <legend>Kaç kişisiniz?</legend>
+        <div class="pills" id="partyPills"></div>
+        <p class="book-hint">Daha kalabalık gruplar için bize uğrayın, birlikte ayarlayalım.</p>
+      </fieldset>
+
+      <fieldset class="book-field">
+        <legend>Hangi gün?</legend>
+        <div class="pills pills-scroll" id="dayPills"></div>
+      </fieldset>
+
+      <fieldset class="book-field">
+        <legend>Saat kaçta?</legend>
+        <div class="pills pills-grid" id="timePills">
+          <p class="book-empty">Önce kişi sayısını ve günü seçin, boş saatler burada görünecek.</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="book-field book-contact">
+        <legend>Size nasıl ulaşalım?</legend>
+        <label class="line-input">
+          <span>Adınız</span>
+          <input name="name" id="bkName" autocomplete="name" required maxlength="60">
+        </label>
+        <label class="line-input">
+          <span>Telefon</span>
+          <input name="phone" id="bkPhone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="24">
+        </label>
+        <label class="line-input line-input-wide">
+          <span>Not <em>(isteğe bağlı)</em></span>
+          <input name="note" id="bkNote" maxlength="140" placeholder="Bebek sandalyesi, doğum günü…">
+        </label>
+      </fieldset>
+    </div>
+
+    <aside class="book-summary" aria-live="polite">
+      <div class="rings rings-book" aria-hidden="true"><span></span></div>
+      <p class="sum-line" id="sumParty"><span class="sum-empty">Kaç kişi</span></p>
+      <p class="sum-line" id="sumDay"><span class="sum-empty">Hangi gün</span></p>
+      <p class="sum-line sum-time" id="sumTime"><span class="sum-empty">Saat</span></p>
+      <p class="book-error" id="bookError" role="alert"></p>
+      <button class="btn book-submit" type="submit">Masayı ayırt</button>
+      <p class="book-demo">Demo: rezervasyonlar yalnızca bu tarayıcıda saklanır.</p>
+    </aside>
+  </form>
+
+  <div class="book-done" id="bookDone" hidden tabindex="-1">
+    <div class="rings rings-book" aria-hidden="true"><span></span></div>
+    <p class="done-kicker">Masanız ayrıldı</p>
+    <p class="done-line" id="doneWhen"></p>
+    <p class="done-meta" id="doneMeta"></p>
+    <button class="link-cta" type="button" id="bookAgain">Yeni rezervasyon yap</button>
+  </div>
+</section>
+
 <section class="visit" id="ziyaret" aria-labelledby="visitTitle">
   <div class="rings rings-visit" aria-hidden="true"><span></span></div>
   <div class="visit-inner">
@@ -164,9 +228,12 @@
     <span>Kor Döner</span>
   </div>
   <p>Musterstraße 14, 12345 Musterstadt</p>
+  <p><a href="panel.html">Restoran paneli</a></p>
   <p class="footer-note">Kurgusal işletme · portföy çalışması · Tasarım &amp; geliştirme: <a href="https://github.com/ErenAlmis" target="_blank" rel="noopener">Eren</a></p>
 </footer>
 
 <script src="script.js"></script>
+<script src="store.js"></script>
+<script src="reservation.js"></script>
 </body>
 </html>
