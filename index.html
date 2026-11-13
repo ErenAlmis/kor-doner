@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kor Döner · Döner, Pide &amp; Pizza</title>
+<meta name="description" content="Kor Döner: döner, dürüm, pide ve pizza. Kurgusal bir restoran için hazırlanmış portföy çalışması.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#110f0e">
+<meta property="og:title" content="Kor Döner · Döner, Pide &amp; Pizza">
+<meta property="og:description" content="Döner, dürüm, pide ve pizza. Portföy çalışması, kurgusal işletme.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<link rel="preload" href="fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Kor Döner işareti: halka, döner şişi ve kor alevi.
+       Renkler CSS değişkenleriyle: --flame (alev), --skewer (şiş), --gap (et bantları arası) -->
+  <symbol id="mark" viewBox="0 0 120 108">
+    <defs>
+      <clipPath id="markCone"><path d="M44 27 Q60 18 76 27 L68.5 74 Q60 77 51.5 74 Z"/></clipPath>
+    </defs>
+    <circle cx="60" cy="54" r="47" fill="none" stroke="currentColor" stroke-width="6.5"/>
+    <line x1="60" y1="13" x2="60" y2="80" stroke="var(--skewer, #111)" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M44 27 Q60 18 76 27 L68.5 74 Q60 77 51.5 74 Z" fill="currentColor"/>
+    <g clip-path="url(#markCone)" fill="none" stroke="var(--gap, #fff)" stroke-width="1.7" stroke-linecap="round">
+      <path d="M40 35 Q60 41 80 35"/><path d="M40 43 Q60 49 80 43"/><path d="M40 51 Q60 57 80 51"/>
+      <path d="M40 59 Q60 65 80 59"/><path d="M40 67 Q60 73 80 67"/>
+    </g>
+    <path fill="var(--flame, #111)" d="M60 97 C51 95 47 88 50 81 C51 84 53 85.5 54.5 84.5 C53 80 55.5 76.5 59 74.5 C58.5 78.5 60.5 80.5 62.5 80.5 C61.5 83.5 63 85 64.5 84 C66 82.5 66 80.5 65.5 79 C69.5 82 71 89 67 93.5 C65 95.8 62.5 96.8 60 97 Z"/>
+  </symbol>
+</svg>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top" aria-label="Kor Döner, sayfa başı">
+    <svg class="brand-mark"><use href="#mark"/></svg>
+    <span class="brand-name">Kor Döner</span>
+  </a>
+  <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+    <a href="#lezzet">Lezzetler</a>
+    <a href="#menu">Menü</a>
+    <a href="#hikaye">Hakkımızda</a>
+    <a href="#ziyaret">İletişim</a>
+  </nav>
+  <a class="link-cta nav-cta" href="#ziyaret">Bize uğrayın <span aria-hidden="true">↗</span></a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menü</button>
+</header>
+
+<main>
+
+<!-- HERO: döner şişi fotoğrafı; script.js içindeki heroSpit() eti döndürür, duman ve kıvılcım ekler -->
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="hero-art" aria-hidden="true">
+    <img src="assets/sis-hero.webp" alt="" width="1024" height="1536" fetchpriority="high">
+    <canvas class="hero-fx"></canvas>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="rings" aria-hidden="true"><span></span><span></span></div>
+
+  <div class="hero-inner">
+    <h1 id="heroTitle" class="hero-title">
+      <span class="ht-line">Kor</span>
+      <span class="ht-line">Döner</span>
+    </h1>
+    <p class="hero-lede">Mahallenin köşesinde şiş hep dönüyor. Ekmek sıcak, soslar bizden, porsiyonlar cömert. Döner, dürüm, pide ve pizza aynı tezgâhta.</p>
+    <div class="hero-meta">
+      <a class="link-cta hero-cta" href="#menu">Menüyü inceleyin <span aria-hidden="true">↗</span></a>
+      <p class="hero-note">Musterstraße 14, Musterstadt</p>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="hikaye">
+  <div class="intro-text">
+    <h2 class="display-2">Şişten tabağa, sıcağı sıcağına.</h2>
+    <p>Kor Döner, mahallenin dönercisi. Öğle arasında hızlı bir dürüm, akşam arkadaşlarla bir Kor Teller ya da eve paket pide: her siparişte et şişten taze kesilir.</p>
+    <p>Menümüz döner üzerine kurulu ama orada bitmiyor. Fırından pide ve pizza, falafel ve salatalar, tatlı olarak fıstıklı baklava.</p>
+    <a class="link-cta" href="#ziyaret">Adres ve yol tarifi <span aria-hidden="true">↗</span></a>
+  </div>
+  <figure class="photo-slot intro-photo" data-photo="assets/kesim.jpg">
+    <figcaption>Fotoğraf: şişten kesim</figcaption>
+  </figure>
+</section>
+
+<section class="signatures" id="lezzet" aria-labelledby="sigTitle">
+  <div class="section-head">
+    <h2 id="sigTitle" class="display-2">Şişin en iyi hâlleri</h2>
+    <p>Kor'a ilk kez geliyorsanız buradan başlayın.</p>
+  </div>
+  <div class="sig-grid">
+    <article class="sig sig-feature">
+      <div class="tilt" data-tilt>
+        <div class="tilt-card">
+          <img src="assets/doner-teller.jpg" alt="Döner Teller: döner, patates kızartması, salata ve yoğurtlu sos" loading="lazy">
+          <span class="tilt-glare" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="sig-body">
+        <h3 lang="de">Döner Teller</h3>
+        <p>Şişten kesilmiş döner, taze salata ve Berliner sos; yanında patates ya da pilav.</p>
+        <span class="price">12,50 €</span>
+      </div>
+    </article>
+    <article class="sig">
+      <div class="tilt" data-tilt>
+        <div class="tilt-card">
+          <img src="assets/durum.jpg" alt="Lavaşa sarılmış dürüm" loading="lazy">
+          <span class="tilt-glare" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="sig-body">
+        <h3 lang="de">Dürüm</h3>
+        <p>İnce lavaşta döner, salata ve Berliner sos.</p>
+        <span class="price">8,00 €</span>
+      </div>
+    </article>
+    <article class="sig">
+      <div class="tilt" data-tilt>
+        <div class="tilt-card">
+          <img src="assets/tasche.jpg" alt="Pide ekmeğinde döner, salata ve sos" loading="lazy">
+          <span class="tilt-glare" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="sig-body">
+        <h3 lang="de">Drehspieß Tasche</h3>
+        <p>Pide ekmeğinde döner, salata ve Berliner sos. Doymak isteyene Jumbo boy.</p>
+        <span class="price">7,00 €</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="menu" id="menu" aria-labelledby="menuTitle">
+  <div class="section-head">
+    <h2 id="menuTitle" class="display-2">Menü</h2>
+    <p>Fiyatlar euro cinsindendir, içeceklerde depozito dahildir.</p>
+  </div>
+  <div class="menu-tabs" role="tablist" aria-label="Menü kategorileri" id="menuTabs"></div>
+  <div class="menu-panel" id="menuPanel" role="tabpanel" tabindex="0"></div>
+</section>
+
+<section class="visit" id="ziyaret" aria-labelledby="visitTitle">
+  <div class="rings rings-visit" aria-hidden="true"><span></span></div>
+  <div class="visit-inner">
+    <h2 id="visitTitle" class="visit-title" lang="de">Muster-<wbr>straße 14</h2>
+    <p class="visit-city">12345 Musterstadt</p>
+    <div class="visit-actions">
+      <a class="btn" href="#top">Yol tarifi al</a>
+      <a class="link-cta" href="#menu">Online sipariş ver <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">
+    <svg class="brand-mark"><use href="#mark"/></svg>
+    <span>Kor Döner</span>
+  </div>
+  <p>Musterstraße 14, 12345 Musterstadt</p>
+  <p class="footer-note">Kurgusal işletme · portföy çalışması · Tasarım &amp; geliştirme: <a href="https://github.com/ErenAlmis" target="_blank" rel="noopener">Eren</a></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
