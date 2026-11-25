@@ -9,6 +9,62 @@
   const timeBox = document.getElementById("timePills");
   const err = document.getElementById("bookError");
   const done = document.getElementById("bookDone");
+
+  // ---------------------------------------------------------------------------
+  // Ad ve telefon kontrolü. Her kontrol { value } (temizlenmiş) ya da { msg } (müşteriye gösterilecek hata) döndürür.
+  // ---------------------------------------------------------------------------
+  function checkName(v) {
+    const name = v.trim().replace(/\s+/g, " ");
+    if (!name) return { msg: "Adınızı yazın, masayı bu adla ayırtacağız." };
+    if (/\d/.test(name)) return { msg: "Ad rakam içeremez." };
+    if (!/^\p{L}[\p{L}\p{M} .'’-]*$/u.test(name)) return { msg: "Sadece harf, boşluk, tire ve kesme işareti kullanın." };
+    if ((name.match(/\p{L}/gu) || []).length < 2) return { msg: "Ad çok kısa." };
+    return { value: name };
+  }
+
+  // Almanya numaraları alan koduyla (0203 …, 0176 …), +49 / 0049 ile; diğer ülkeler + ve ülke koduyla (örn. +90).
+  // Sonuç uluslararası biçimdedir, örn. +4917612345678.
+  function checkPhone(v) {
+    const raw = v.trim();
+    if (!raw) return { msg: "Size ulaşabilmemiz için telefon numaranızı yazın." };
+    if (/[^\d\s+()\/.-]/.test(raw)) return { msg: "Telefon numarası sadece rakam, boşluk ve + - / ( ) içerebilir." };
+    if ((raw.match(/\+/g) || []).length > 1 || raw.indexOf("+") > 0) return { msg: "Artı işareti sadece başta olabilir, örn. +49 176 12345678." };
+    const d = raw.replace(/\D/g, "");
+    if (/(\d)\1{6,}/.test(d)) return { msg: "Lütfen gerçek bir telefon numarası yazın." };
+
+    let intl = null;
+    if (raw.startsWith("+")) intl = d;
+    else if (d.startsWith("00")) intl = d.slice(2);
+
+    if (intl !== null && !intl.startsWith("49")) {
+      if (intl.length < 8 || intl.length > 15) return { msg: "Bu uluslararası numaranın uzunluğu geçersiz." };
+      return { value: "+" + intl };
+    }
+    const national = intl !== null ? "0" + intl.slice(2) : d;
+    if (!national.startsWith("0") || national.startsWith("00")) {
+      return { msg: "Lütfen alan koduyla yazın, örn. 0203 123456 ya da 0176 12345678." };
+    }
+    if (/^01[5-7]/.test(national)) {
+      if (national.length < 10 || national.length > 12) return { msg: "Cep numarası 10-12 haneli olmalı, örn. 0176 12345678." };
+    } else if (national.length < 7 || national.length > 13) {
+      return { msg: "Bu telefon numarası çok kısa ya da çok uzun. Lütfen alan koduyla yazın." };
+    }
+    return { value: "+49" + national.slice(1) };
+  }
+
+  // Hatayı alanın altında göster: alandan çıkınca kontrol et, düzeltilince hemen kaldır
+  function showFieldResult(el, res) {
+    const msgEl = document.getElementById(el.id + "Msg");
+    el.setAttribute("aria-invalid", res.msg ? "true" : "false");
+    if (msgEl) msgEl.textContent = res.msg || "";
+  }
+  [["bkName", checkName], ["bkPhone", checkPhone]].forEach(([id, check]) => {
+    const el = document.getElementById(id);
+    el.addEventListener("blur", () => { if (el.value.trim()) showFieldResult(el, check(el.value)); });
+    el.addEventListener("input", () => {
+      if (el.getAttribute("aria-invalid") === "true") showFieldResult(el, check(el.value));
+    });
+  });
   const sum = {
     party: document.getElementById("sumParty"),
     day: document.getElementById("sumDay"),
@@ -100,15 +156,16 @@
     // form.name formun kendi adını verir, bu yüzden alanlara id ile erişiyoruz
     const nameEl = document.getElementById("bkName");
     const phoneEl = document.getElementById("bkPhone");
-    const name = nameEl.value.trim();
-    const phone = phoneEl.value.trim();
+    const nameRes = checkName(nameEl.value), phoneRes = checkPhone(phoneEl.value);
+    const name = nameRes.value || "";
+    const phone = phoneRes.value || "";
     const note = document.getElementById("bkNote").value.trim();
     let msg = "", focus = null;
     if (!state.party) { msg = "Kaç kişi geleceğinizi seçin."; focus = partyBox.querySelector("input"); }
     else if (!state.date) { msg = "Hangi gün geleceğinizi seçin."; focus = dayBox.querySelector("input"); }
     else if (!state.time) { msg = "Boş saatlerden birini seçin."; focus = timeBox.querySelector("input:not(:disabled)"); }
-    else if (name.length < 2) { msg = "Adınızı yazın, masayı bu adla ayırtacağız."; focus = nameEl; }
-    else if ((phone.match(/\d/g) || []).length < 6) { msg = "Size ulaşabilmemiz için telefon numaranızı yazın."; focus = phoneEl; }
+    else if (nameRes.msg) { msg = nameRes.msg; focus = nameEl; showFieldResult(nameEl, nameRes); }
+    else if (phoneRes.msg) { msg = phoneRes.msg; focus = phoneEl; showFieldResult(phoneEl, phoneRes); }
     if (msg) { err.textContent = msg; focus && focus.focus(); return; }
 
     // Aynı telefonla aynı gün ve saate ikinci rezervasyon olmasın
@@ -148,6 +205,7 @@
 
   document.getElementById("bookAgain").addEventListener("click", () => {
     form.reset();
+    ["bkName", "bkPhone"].forEach((id) => showFieldResult(document.getElementById(id), {}));
     state.party = state.date = state.time = null;
     timeBox.innerHTML = '<p class="book-empty">Önce kişi sayısını ve günü seçin, boş saatler burada görünecek.</p>';
     err.textContent = "";

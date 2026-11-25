@@ -14,7 +14,7 @@
 <link rel="preload" href="fonts/big-shoulders-display-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -175,11 +175,13 @@
         <legend>Size nasıl ulaşalım?</legend>
         <label class="line-input">
           <span>Adınız</span>
-          <input name="name" id="bkName" autocomplete="name" required maxlength="60">
+          <input name="name" id="bkName" autocomplete="name" required maxlength="60" aria-describedby="bkNameMsg">
+          <small class="field-msg" id="bkNameMsg" aria-live="polite"></small>
         </label>
         <label class="line-input">
           <span>Telefon</span>
-          <input name="phone" id="bkPhone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="24">
+          <input name="phone" id="bkPhone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="24" placeholder="Örn. 0176 12345678" aria-describedby="bkPhoneMsg">
+          <small class="field-msg" id="bkPhoneMsg" aria-live="polite"></small>
         </label>
         <label class="line-input line-input-wide">
           <span>Not <em>(isteğe bağlı)</em></span>
@@ -232,8 +234,8 @@
   <p class="footer-note">Kurgusal işletme · portföy çalışması · Tasarım &amp; geliştirme: <a href="https://github.com/ErenAlmis" target="_blank" rel="noopener">Eren</a></p>
 </footer>
 
-<script src="script.js"></script>
-<script src="store.js"></script>
-<script src="reservation.js"></script>
+<script src="script.js?v=2"></script>
+<script src="store.js?v=2"></script>
+<script src="reservation.js?v=2"></script>
 </body>
 </html>

@@ -527,3 +527,8 @@ section { position: relative; }
   .hero-title .ht-line, .hero-lede, .hero-note, .hero-cta, .hero-art { opacity: 1; }
   html { scroll-behavior: auto; }
 }
+
+/* Alan kontrolü: hata mesajı alanın altında, hatalı alanın çizgisi kırmızımsı */
+.field-msg { display: block; margin-top: 6px; font-size: 13px; line-height: 1.35; color: #ff8a7a; }
+.field-msg:empty { display: none; }
+.line-input input[aria-invalid="true"] { border-bottom-color: #ff8a7a; box-shadow: 0 1px 0 0 #ff8a7a; }
